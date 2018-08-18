@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -16,11 +17,11 @@ const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars');
 
-let routes = require('./controllers/burgers_controller.js');
+let router = require('./controllers/burgers_controller.js');
 
-app.use(routes);
+app.use("/", router);
 
-app.listen(PORT, function(){
+app.listen(PORT, function () {
     console.log("server listening on: http://localhost:" + PORT);
 });
 
