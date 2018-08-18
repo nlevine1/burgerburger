@@ -3,12 +3,6 @@ let router = express.Router();
 let burger = require('../models/burger.js');
 
 
-
-
-// router.get("/", function(req, res) {
-   
-// })
-
 router.get("/", function (req, res) {
     burger.selectAll(function (data) {
 
@@ -20,12 +14,12 @@ router.get("/", function (req, res) {
     });
 });
 
-router.post("/", function(req, res) {
+router.post("/new/burger", function(req, res) {
     console.log('right place?')
     
-    burger.insertOne([req.body.burger], function() {
+    burger.insert([req.body.burger_name, req.body.devoured], function() {
         res.redirect("/");
-        console.log([req.body.burger]);
+        console.log([req.body.burger_name]);
     });
 });
 

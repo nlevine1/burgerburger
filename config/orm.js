@@ -12,10 +12,10 @@ let orm = {
         });
     },
 
-    insertOne: function (table, cols, burger, cb) {
-        let queryString = "INSERT INTO " + table + "(" + cols + ") VALUES (?)";
+    insertOne: function (table, burger, cb) {
+        let queryString = "INSERT INTO " + table + " SET ?";
 
-        connection.query(queryString, [burger], function (err, res) {
+        connection.query(queryString, burger, function (err, res) {
             if (err) throw err;
              cb(res);
         })
